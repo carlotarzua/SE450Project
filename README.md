@@ -1,7 +1,7 @@
 # SE450Project
 SE 450 Project
 
-– Are you in a Group?
+#– Are you in a Group?
   No, I am not in a group
 
 – If so, who else is in your group?

@@ -1,4 +1,20 @@
+# Maven
+/target/
+
+# IntelliJ IDEA
 .idea/
-out/
 *.iml
+
+# VS Code
+.vscode/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# macOS
 .DS_Store
+
+# Environment files
+.env

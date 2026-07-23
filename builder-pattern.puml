@@ -36,25 +36,16 @@ class Course {
     -title: String
     -instructorName: String
     -capacity: int
-    -enrolledStudentEmails: List<String>
-    +enrollStudent(email: String): boolean
-    +isFull(): boolean
-    +getEnrollmentCount(): int
+    +Course(code: String, title: String, instructorName: String, capacity: int)
 }
 
 class CourseService {
-    -courses: Map<String, Course>
     +CourseService()
-    +addCourse(course: Course): void
-    +getAllCourses(): List<Course>
-    +findCourse(code: String): Optional<Course>
-    +enrollStudent(courseCode: String, studentEmail: String): boolean
 }
 
 CourseBuilder <|.. DefaultCourseBuilder
 DefaultCourseBuilder --> Course : creates
 CourseDirector --> CourseBuilder : directs
 CourseService --> CourseDirector : uses
-CourseService --> Course : stores
 
 @enduml

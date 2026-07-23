@@ -121,18 +121,47 @@ By the final submission, I plan to demonstrate a working application where:
 SE450Project/
 ├── pom.xml
 ├── README.md
+├── builder-pattern.puml
+├── builder-pattern.png
+├── strategy-pattern.puml
+├── strategy-pattern.png
 ├── src/
 │   ├── main/
 │   │   ├── java/com/carlota/securecourse/
 │   │   │   ├── SecureCourseApplication.java
+│   │   │   ├── builder/
+│   │   │   │   ├── CourseBuilder.java
+│   │   │   │   ├── CourseDirector.java
+│   │   │   │   └── DefaultCourseBuilder.java
 │   │   │   ├── config/
+│   │   │   │   └── SecurityConfig.java
 │   │   │   ├── controller/
+│   │   │   │   ├── CourseController.java
+│   │   │   │   ├── DemoController.java
+│   │   │   │   └── GradeController.java
 │   │   │   ├── model/
-│   │   │   └── service/
+│   │   │   │   ├── Course.java
+│   │   │   │   ├── Role.java
+│   │   │   │   └── UserAccount.java
+│   │   │   ├── service/
+│   │   │   │   └── CourseService.java
+│   │   │   └── strategy/
+│   │   │       ├── GradeCalculator.java
+│   │   │       ├── GradingStrategy.java
+│   │   │       ├── LatePenaltyGradingStrategy.java
+│   │   │       └── StandardGradingStrategy.java
 │   │   └── resources/
 │   │       └── application.properties
 │   └── test/
 │       └── java/com/carlota/securecourse/
+│           ├── builder/
+│           │   └── CourseBuilderTest.java
+│           ├── service/
+│           │   └── CourseServiceTest.java
+│           └── strategy/
+│               └── GradeCalculatorTest.java
+├── lib/
+├── tests/
 └── .gitignore
 ```
 
@@ -169,7 +198,7 @@ http://localhost:8080/api/status
 
 ### Demo Accounts
 
-These accounts are only temporary Sprint 2 demo users. They will later be replaced with persistent users.
+These accounts are temporary demonstration users and will later be replaced with persistent users.
 
 | Role | Username | Password |
 |---|---|---|

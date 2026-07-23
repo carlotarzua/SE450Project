@@ -21,7 +21,7 @@ public class DemoController {
     public Map<String, String> status() {
         return Map.of(
             "status", "running",
-            "sprint", "Sprint 2"
+            "sprint", "Sprint 3"
         );
     }
 

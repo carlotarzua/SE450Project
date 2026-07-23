@@ -1,0 +1,60 @@
+@startuml
+title SecureCourse Builder Pattern
+
+interface CourseBuilder {
+    +reset(): void
+    +buildCode(code: String): CourseBuilder
+    +buildTitle(title: String): CourseBuilder
+    +buildInstructor(instructorName: String): CourseBuilder
+    +buildCapacity(capacity: int): CourseBuilder
+    +getCourse(): Course
+}
+
+class DefaultCourseBuilder {
+    -code: String
+    -title: String
+    -instructorName: String
+    -capacity: int
+    +DefaultCourseBuilder()
+    +reset(): void
+    +buildCode(code: String): CourseBuilder
+    +buildTitle(title: String): CourseBuilder
+    +buildInstructor(instructorName: String): CourseBuilder
+    +buildCapacity(capacity: int): CourseBuilder
+    +getCourse(): Course
+    -validateRequiredFields(): void
+}
+
+class CourseDirector {
+    -builder: CourseBuilder
+    +CourseDirector(builder: CourseBuilder)
+    +constructCourse(code: String, title: String, instructorName: String, capacity: int): Course
+}
+
+class Course {
+    -code: String
+    -title: String
+    -instructorName: String
+    -capacity: int
+    -enrolledStudentEmails: List<String>
+    +enrollStudent(email: String): boolean
+    +isFull(): boolean
+    +getEnrollmentCount(): int
+}
+
+class CourseService {
+    -courses: Map<String, Course>
+    +CourseService()
+    +addCourse(course: Course): void
+    +getAllCourses(): List<Course>
+    +findCourse(code: String): Optional<Course>
+    +enrollStudent(courseCode: String, studentEmail: String): boolean
+}
+
+CourseBuilder <|.. DefaultCourseBuilder
+DefaultCourseBuilder --> Course : creates
+CourseDirector --> CourseBuilder : directs
+CourseService --> CourseDirector : uses
+CourseService --> Course : stores
+
+@enduml

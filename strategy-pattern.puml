@@ -1,0 +1,38 @@
+@startuml
+title SecureCourse Strategy Pattern
+
+interface GradingStrategy {
+    +calculateGrade(earnedPoints: double, possiblePoints: double, lateDays: int): double
+}
+
+class StandardGradingStrategy {
+    +calculateGrade(earnedPoints: double, possiblePoints: double, lateDays: int): double
+    -validateInput(earnedPoints: double, possiblePoints: double, lateDays: int): void
+}
+
+class LatePenaltyGradingStrategy {
+    -penaltyPerDay: double
+    +LatePenaltyGradingStrategy(penaltyPerDay: double)
+    +calculateGrade(earnedPoints: double, possiblePoints: double, lateDays: int): double
+    -validateInput(earnedPoints: double, possiblePoints: double, lateDays: int): void
+}
+
+class GradeCalculator {
+    -strategy: GradingStrategy
+    +GradeCalculator(strategy: GradingStrategy)
+    +setStrategy(strategy: GradingStrategy): void
+    +calculate(earnedPoints: double, possiblePoints: double, lateDays: int): double
+}
+
+class GradeController {
+    +calculateGrade(earnedPoints: double, possiblePoints: double, lateDays: int, strategy: String): Map<String, Object>
+    -selectStrategy(strategy: String): GradingStrategy
+}
+
+GradingStrategy <|.. StandardGradingStrategy
+GradingStrategy <|.. LatePenaltyGradingStrategy
+GradeCalculator --> GradingStrategy : delegates to
+GradeController --> GradeCalculator : uses
+GradeController --> GradingStrategy : selects
+
+@enduml
